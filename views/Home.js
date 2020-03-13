@@ -91,8 +91,8 @@ const schedulingOptions = {
         style={styles.backgroundImage}
       >
         <Content style={{ width: screenWidth }}>
-      <Listt/>
-      <SuppList/>
+      <Listt navigation={navigation}/>
+      <SuppList navigation={navigation}/>
       
         </Content>
       </ImageBackground>

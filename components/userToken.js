@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+/* import React, {useEffect} from 'react';
 import {
   AsyncStorage,
 } from 'react-native';
@@ -16,3 +16,4 @@ import {
 
 
 export default GetToken ;
+ */

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { StyleSheet, Image, Dimensions, ImageBackground } from "react-native";
 import {
   Container,
@@ -25,15 +25,17 @@ import FormTextInput from "../components/formTextInputs";
 
 
 import { AsyncStorage } from "react-native";
-import { fetchPOST } from "../hooks/APIHooks";
+import { fetchPOST, fetchGET } from "../hooks/APIHooks";
 import useSignUpForm from "../hooks/addLoginHooks";
 import {AuthContext} from '../contexts/context'
+import {MedicContext} from "../contexts/medicContext";
 
 
 const Login = props => {
   const backgroundSource = require("../images/lback.jpg");
   const [toggleForm, setToggleForm] = useState(true);
   const { signIn } = React.useContext(AuthContext);
+  const [medicine, setMedicine] = useContext(MedicContext);
 
 
 
@@ -69,8 +71,12 @@ const Login = props => {
       console.log("Login", user);
       await AsyncStorage.setItem("userToken", user.token);
       await AsyncStorage.setItem("user", JSON.stringify(user.user));
-      signIn();
-    
+     
+      const medicationList =  await fetchGET("media",user.user_id,user.token);
+      console.log('the new user list',medicationList);
+      
+      await setMedicine(medicationList);
+     await signIn(user.token);
     } catch (e) {
       console.log("signInAsync error: " + e.message);
       setErrors(errors => ({
@@ -83,6 +89,7 @@ const Login = props => {
       console.log(errors.fetch);
       
     }
+     
   };
   const registerAsync = async () => {
     const regValid = validateOnSend(validationProperties);
@@ -97,6 +104,7 @@ const Login = props => {
       delete user.confirmPassword;
       const result = await fetchPOST("users", user);
       console.log("register", result);
+      setMedicine(null);
       signInAsync();
     } catch (e) {
       console.log("registerAsync error: ", e.message);
@@ -190,14 +198,69 @@ const Login = props => {
               >
                 <Text style={{ fontWeight: "bold" }}>REGISTER</Text>
               </Item>
+       
+            <FormTextInput
+              autoCapitalize='none'
+              value={inputs.username}
+              lable='username'
+              onChangeText={handleUsernameChange}
+              onEndEditing={() => {
+                checkAvail();
+                validateField(validationProperties.username);
+              }}
+              
+              error={errors.username}
+            />
+          
+          
+            <FormTextInput
+              autoCapitalize='none'
+              value={inputs.email}
+              lable='email'
+              onChangeText={handleEmailChange}
+              onEndEditing={() => {
+                validateField(validationProperties.email);
+              }}
+              error={errors.email}
+            />
+         
+            <FormTextInput
+              autoCapitalize='none'
+              value={inputs.full_name}
+              lable='fullname'
+              onChangeText={handleFullnameChange}
+              onEndEditing={() => {
+                validateField(validationProperties.full_name);
+              }}
+              error={errors.full_name}
+            />
+          
+            <FormTextInput
+              autoCapitalize='none'
+              value={inputs.password}
+              lable='password'
+              secureTextEntry={true}
+              onChangeText={handlePasswordChange}
+              onEndEditing={() => {
+                validateField(validationProperties.password);
+              }}
+              error={errors.password}
+            />
+         
+            <FormTextInput
+              autoCapitalize='none'
+              value={inputs.confirmPassword}
+              lable='confirm password'
+              secureTextEntry={true}
+              onChangeText={handleConfirmPasswordChange}
+              onEndEditing={() => {
+                validateField(validationProperties.confirmPassword);
+              }}
+              error={errors.confirmPassword}
+            />
+          
 
-              {/*   <RegisterForm lable="Create a Username" />
-              <RegisterForm lable="Enter your Email address" />
-              <RegisterForm lable="Enter your Age" />
-              <RegisterForm lable="Create a Password" />
-              <RegisterForm lable="Re-enter a Password" /> */}
-
-              <Button block style={{ backgroundColor: "#28BFCC" }}>
+              <Button block style={{ backgroundColor: "#28BFCC" }}  onPress={registerAsync}>
                 <Text>REGISTER</Text>
               </Button>
 

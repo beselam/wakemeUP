@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
-import React, { useState } from "react";
+
+/* import React, { useState } from "react";
 import { AsyncStorage } from "react-native";
 import PropTypes from "prop-types";
 
@@ -24,3 +25,4 @@ const TokenProvider = props => {
 };
 
 export { TokenContext, TokenProvider };
+ */

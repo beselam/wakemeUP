@@ -1,7 +1,7 @@
 import React from 'react';
 import {Input, Body, Badge, Item, Text,Card,Label} from 'native-base';
 
-
+// a common  input component to take user input in diffrent 
 const FormTextInput = (props) => {
   const {error,lable, ...otherProps} = props;
   return (

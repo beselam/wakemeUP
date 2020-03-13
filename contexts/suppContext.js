@@ -2,9 +2,10 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
+//a context for user suppliment
 const SuppContext = React.createContext([{}, () => {}]);
 
-const SupplimentArray = [{'medicineName':'amoxa','startingTime':8,'perDay':3,'timeInterval':8 , 'left':2},{'medicineName':'amoxa','startingTime':8,'perDay':3,'timeInterval':8 , 'left':2}];
+const SupplimentArray = [];
 
 const SuppProvider = (props) => {
   const [suppliment, setSuppliment] = useState(SupplimentArray);

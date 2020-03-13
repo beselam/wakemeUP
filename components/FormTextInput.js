@@ -1,24 +1,12 @@
-import React from "react";
+/* import React from "react";
 
 import {
-  Container,
-  Header,
-  Body,
-  Title,
-  Content,
   Badge,
-  Form,
-  Button,
   Text,
   Item,
-  H2,
   Card,
   Label,
   Input,
-  CardItem,
-  Left,
-  Right,
-  Icon
 } from "native-base";
 import PropTypes from "prop-types";
 
@@ -100,3 +88,4 @@ const FormTextInput = () => {
 };
 
 export default FormTextInput;
+ */

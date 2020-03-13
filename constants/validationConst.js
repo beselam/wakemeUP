@@ -1,3 +1,4 @@
+// validation constraint for registeration 
 const registerConstraints = {
     username: {
       presence: {
@@ -16,9 +17,7 @@ const registerConstraints = {
         message: 'not valid.',
       },
     },
-    full_name: {
-      presence: 'cannot be blank.',
-    },
+   
     password: {
       presence: {
         message: 'cannot be blank.',
@@ -36,6 +35,7 @@ const registerConstraints = {
     },
   };
   
+  // validation constraint for photo upload 
   const uploadConstraints = {
     title: {
       presence: {
@@ -54,6 +54,54 @@ const registerConstraints = {
       },
     },
   };
+  // validation constraint for upload medication
+  const uploadMedConstraints = {
+    medicineName: {
+      presence: {
+        message: 'cannot be blank.',
+      },
+    },
+    startingTime: {
+      presence: {
+        message: 'cannot be blank.',
+      },
+    },
+    howmanyTimes: {
+      presence: {
+        message: 'cannot be blank.',
+      },
+    },
+    timeGap: {
+      presence: {
+        message: 'cannot be blank.',
+      },
+    },
+  };
+
+  // validation constraint for  upload suppliment
+  const uploadSuppConstraints = {
+    supplimentName: {
+      presence: {
+        message: 'cannot be blank.',
+      },
+    },
+    startingTime: {
+      presence: {
+        message: 'cannot be blank.',
+      },
+    },
+    howmanyTimes: {
+      presence: {
+        message: 'cannot be blank.',
+      },
+    },
+    timeGap: {
+      presence: {
+        message: 'cannot be blank.',
+      },
+    },
+  };
   
-  export {registerConstraints, uploadConstraints};
+  
+  export {registerConstraints, uploadConstraints,uploadMedConstraints,uploadSuppConstraints};
   

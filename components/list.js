@@ -1,131 +1,71 @@
 /* eslint-disable max-len */
-import React, {useContext, useEffect, useState} from 'react';
+
+// the list componnent for medication 
+import React, { useContext, useEffect, useState } from "react";
+import { Switch } from "react-native";
+
 import {
-    StyleSheet,
-    Switch,
-    FlatList,
-    Image,
-    Dimensions,
-    ImageBackground
-  } from "react-native";
-  
-import {
-    List as BaseList,
-    Container,
-  Header,
+  List as BaseList,
   Body,
-  Title,
-  Content,
-  Form,
   Button,
   ListItem,
-  Separator,
   Text,
-  Item,
-  H2,
-  Card,
-  Label,
-  Input,
-  CardItem,
   Left,
   Right,
   List,
-  Icon,
-  Thumbnail,
-  View
-} from 'native-base';
-import ListItemm from './listItem';
-import {MedicContext} from '../contexts/medicContext';
-//import {getAllMedia} from '../hooks/APIHooks';
+  Icon
+} from "native-base";
+import ListItemm from "./listItem";
+import { MedicContext } from "../contexts/medicContext";
+import { getUserMed } from "../hooks/APIHooks";
 
-
-const Listt = (props) => {
-    const [isSwitchEnabled, setSwitch] = useState("false");
+const Listt = ({ navigation }) => {
+  const [isSwitchEnabled, setSwitch] = useState(true);
   const [medicine, setMedicine] = useContext(MedicContext);
-
-  const getMedicine =  () => {
+  
+  //get user medication
+  const getMedicine = async () => {
     try {
-      const data =  medicine;
-      setMedia(data.reverse());
-     
+      const data = await getUserMed();
+      setMedicine(data.reverse());
     } catch (e) {
       console.log(e.message);
     }
   };
-
-
-
+  useEffect(() => {
+    getMedicine();
+  }, []);
+ //return a list of medication cards 
   return (
-    
     <List style={{ backgroundColor: "transparent" }}>
       <ListItem itemDivider>
-              <Left style={{ flex: 0.3 }}>
-                <Button style={{ backgroundColor: "#FF9501" }}>
-                  <Icon active name="medkit" />
-                </Button>
-              </Left>
-              <Body style={{ marginLeft: 0, paddingLeft: 0 }}>
-                <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-                  Medication
-                </Text>
-              </Body>
-              <Right>
-                <Switch
-                  value={isSwitchEnabled}
-                  trackColor={{ true: "#72A82F" }}
-                  onValueChange={value => setSwitch(value)}
-                />
-              </Right>
-            </ListItem>
-    <BaseList
-      dataArray={medicine}
-
-      renderItem={({ item }) => (
-        <ListItemm  singleMedia={item}/>
-        
+        <Left style={{ flex: 0.3 }}>
+          <Button style={{ backgroundColor: "#FF9501" }}>
+            <Icon active name="medkit" />
+          </Button>
+        </Left>
+        <Body style={{ marginLeft: 0, paddingLeft: 0 }}>
+          <Text style={{ fontWeight: "bold", fontSize: 16 }}>Medication</Text>
+        </Body>
+        <Right>
+          <Switch
+            value={isSwitchEnabled}
+            trackColor={{ true: "#72A82F" }}
+            onValueChange={value => setSwitch(value)}
+          />
+        </Right>
+      </ListItem>
+      {isSwitchEnabled && (
+        <BaseList
+          dataArray={medicine}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <ListItemm singleMedia={item} navigation={navigation} />
+          )}
+        />
       )}
-    />
-  </List>
-    
+    </List>
   );
- 
 };
 
-
 export default Listt;
-/*
-   <List style={{ backgroundColor: "transparent" }}>
-            <ListItem itemDivider>
-              <Left style={{ flex: 0.3 }}>
-                <Button style={{ backgroundColor: "#FF9501" }}>
-                  <Icon active name="medkit" />
-                </Button>
-              </Left>
-              <Body style={{ marginLeft: 0, paddingLeft: 0 }}>
-                <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-                  Medication
-                </Text>
-              </Body>
-              <Right>
-                <Switch
-                  value={isSwitchEnabled}
-                  trackColor={{ true: "#72A82F" }}
-                  onValueChange={value => setSwitch(value)}
-                />
-              </Right>
-            </ListItem>
-            {console.log('l')}
-            
-       <FlatList
-          
-          data={medic}
-          
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({item}) => console.log('lema')
-          
-        
-        }
-          
-        />
-    </List>
-*/

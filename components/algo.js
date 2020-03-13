@@ -1,3 +1,6 @@
+// in this component time  calculation is done
+
+
 import React from "react";
 import { useState, useContext, Alert, useEffect } from "react-native";
 import { Notifications } from "expo";
@@ -46,6 +49,7 @@ const Algo = param => {
     const now = min + hour;
     return now;
   };
+
 
   const notify = () => {
     const localNotification = {
@@ -96,7 +100,8 @@ const Algo = param => {
       { cancelable: false }
     );
   };
-
+  
+// this set the notification for the first medication
   const firstMedicineTime = () => {
     let userTime = parseFloat(medInput.startingTime);
     userTime = converTimeToMiliSec(userTime);

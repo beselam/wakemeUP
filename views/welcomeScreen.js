@@ -53,37 +53,55 @@ const  WelcomeScreen= ({ navigation })=> {
         <View style={{ height: height / 1 }}>
           <View
             style={{
-              justifyContent: "flex-end",
+              justifyContent: "space-evenly",
               flex: 1,
               alignItems: "center",
               paddingBottom: 150,
               paddingLeft: 15
             }}
           >
-            <Image source={logo} />
+            <Image source={logo}  />
+          </View>
+          <View
+            style={{
+              width: "100%",
+
+              alignItems: "center"
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                color: "white",
+                fontWeight: "bold"
+              }}
+            >
+              Lets Go Healthy
+            </Text>
           </View>
           <View>
           <SwiperFlatList
           autoplay
-          autoplayDelay={3}
+          autoplayDelay={8}
           autoplayLoop
           index={2}
           showPagination
+          paginationActiveColor="rgba(144,168,47,0.92)"
         >
           <View style={[styles.child, {}]}>
-            <Text style={styles.text}>sdhgsdhsdshg shgdfsgd sdfsgdv </Text>
+            <Text style={styles.text}>I care about your Medication </Text>
           </View>
           <View style={[styles.child, { }]}>
-            <Text style={styles.text}> sdgfsdv sgdfasd asytdasv asdgfasd asdytfasd asdgafsd</Text>
+            <Text style={styles.text}> I care about your Suppliments</Text>
           </View>
           <View style={[styles.child, { }]}>
-            <Text style={styles.text}>asvdfhas asgdas aytsda sdas asdytadcasvbdasgdcsvdca asdsad </Text>
+            <Text style={styles.text}>I care about your Water intake </Text>
           </View>
          
         </SwiperFlatList>
           </View>
         
-          <View style={{ justifyContent: "flex-end", flex: 1,paddingBottom:30 }}>
+          <View style={{ justifyContent: "flex-end", flex: 0.25,paddingBottom:30,marginTop:0,paddingTop:0 }}>
             <TouchableOpacity
               onPress={() => {
                 navigation.push("LoginScr");
@@ -137,18 +155,18 @@ const styles = StyleSheet.create({
     marginVertical: 5
   },
   child: {
-    height: height * 0.2,
+    height: height * 0.1,
     width,
     justifyContent: 'center',
-    borderWidth:0.5,
-    borderColor:'white',
-    borderRadius:20,
-    
+    paddingLeft:40,
+    paddingRight:40,
+    paddingTop:0
   },
   text: {
-    fontSize: 20,
+    fontSize: 17,
     textAlign: 'center',
-    color:'white',
+    color:'#EAF1EC',
+    marginBottom:20
     
   }
   
