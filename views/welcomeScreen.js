@@ -4,7 +4,6 @@ import {
   Text,
   View,
   Animated,
-  Button,
   Dimensions,
   Image,
   ScrollView,
@@ -18,6 +17,9 @@ import SwiperFlatList from 'react-native-swiper-flatlist';
 const { width, height } = Dimensions.get("window");
 const logo = require("../assets/logo6.png");
 
+
+// this is a screen before the user login to our app 
+// it contains  a backgroud video with a floating swipperflat list 
 const  WelcomeScreen= ({ navigation })=> {
   
  

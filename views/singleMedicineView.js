@@ -22,6 +22,8 @@ import {
 import { MedicContext } from "../contexts/medicContext";
 import {SuppContext} from "../contexts/suppContext";
 
+// a screen for showing a medicine or suppliment detail 
+
 const SingleMedView = ({ route, navigation }) => {
 
   const [medicine, setMedicine] = useContext(MedicContext);

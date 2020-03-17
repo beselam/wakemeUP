@@ -6,6 +6,7 @@ import MedUpload from "./medUploadView";
 import SupplimentUpload from "./supplimentUploadView";
 import { Asset } from "expo-asset";
 
+//the screen component for add medication Tb 
 const AddFeedScreen = ({ navigation }) => {
   const test = async () => {
     const imageURI = await Expo.Asset.fromModule(require("../assets/lo.jpg"));
@@ -28,6 +29,7 @@ const AddFeedScreen = ({ navigation }) => {
       console.log("this is e ", e);
     }
   });
+  // returns two tab components medication and suppliment
   return (
     <Container>
       <Tabs>

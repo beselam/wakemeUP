@@ -28,6 +28,7 @@ import EditProfile from "./editProfile";
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 
+// the screen for showing the user info 
 const ProfileScreen = props => {
   const [ModalVisible, setModalVisible] = useState(false);
  

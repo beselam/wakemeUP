@@ -1,15 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import {
-  StyleSheet,
-  Dimensions,
-  ImageBackground
-} from "react-native";
+import { StyleSheet, Dimensions, ImageBackground } from "react-native";
 
 import {
   Container,
-  Header,
   Body,
-  Title,
   Content,
   Form,
   Button,
@@ -17,14 +11,9 @@ import {
   Item,
   H2,
   Card,
-  Label,
-  Input,
-  CardItem,
   Left,
   Right,
-  Icon,
-  Thumbnail,
-  View
+  Icon
 } from "native-base";
 //import FormTextInput from "../components/FormTextInput";
 import useAddMedicineForm from "../hooks/addMedicineHook";
@@ -33,9 +22,8 @@ import Listt from "../components/list";
 import Algo from "../components/algo";
 import Home from "./Home";
 
-const MedUpload = ({nav ,file }) => {
-  
-    
+// a screen for medcicine upload form
+const MedUpload = ({ nav, file }) => {
   const {
     handleMedicineNameChange,
     handleStartingTimeChange,
@@ -59,32 +47,27 @@ const MedUpload = ({nav ,file }) => {
 
   const screenWidth = Dimensions.get("window").width;
 
-  
-
   const uploadMedicine = async () => {
-  
-  
-  
-  /*   console.log('mm'); */
-    
+    /*   console.log('mm'); */
+
     const fileUri = await file();
-   console.log('ffffffffff',fileUri);
-   
-   const medInputvalidation = validateOnSend(validationProperties);
-     console.log('result',medInputvalidation);
-    
+    console.log("ffffffffff", fileUri);
+
+    const medInputvalidation = validateOnSend(validationProperties);
+    console.log("result", medInputvalidation);
+
     if (!medInputvalidation) {
       return;
     }
 
     try {
       let newMedInput = await Algo(medicineinputs);
-      await handleUpload(newMedInput,fileUri);
+      await handleUpload(newMedInput, fileUri);
       reset();
       nav.navigate("Home");
     } catch (e) {
       console.log("error from uploadmedicine", e);
-    } 
+    }
   };
 
   const reset = () => {
@@ -101,7 +84,6 @@ const MedUpload = ({nav ,file }) => {
         style={styles.backgroundImage}
       >
         <Content style={{ width: screenWidth, zIndex: 4 }}>
-          
           <Card
             style={{
               marginLeft: 30,
@@ -114,9 +96,7 @@ const MedUpload = ({nav ,file }) => {
           >
             <Item style={{ borderBottomColor: "transparent" }}>
               <Left style={{ flex: 0.3 }}>
-                <Button
-                  style={{ backgroundColor: "#FF9501" }}
-                >
+                <Button style={{ backgroundColor: "#FF9501" }}>
                   <Icon active name="medkit" />
                 </Button>
               </Left>
@@ -134,67 +114,60 @@ const MedUpload = ({nav ,file }) => {
               </Body>
             </Item>
           </Card>
-          
-            <Form style={{ marginLeft: 30, marginRight: 30 }}>
-              <FormTextInput
-                lable="Enter the Medicine Name "
-                maxLength={18}
-                value={medicineinputs.medicineName}
-                onChangeText={handleMedicineNameChange}
-                onEndEditing={() => {
-                  validateField(validationProperties.medicineName);
-       
-                }}
-                error={errors.medicineName}
-              
-                
-              />
-              <FormTextInput
-                lable="Starting Time in 24 hour format"
-                maxLength={2}
-                keyboardType="numeric"
-                value={medicineinputs.startingTime}
-                onChangeText={handleStartingTimeChange}
-                onEndEditing={() => {
-                  validateField(validationProperties.startingTime);
-                }}
-                error={errors.startingTime}
-              />
-              <FormTextInput
-                lable="How many times per day"
-                maxLength={1}
-                keyboardType="numeric"
-                value={medicineinputs.howmanyTimes}
-                onChangeText={handleHowmanyTimesChange}
-                onEndEditing={() => {
-                  validateField(validationProperties.howmanyTimes);
-                }}
-                error={errors.howmanyTimes}
-              />
-              <FormTextInput
-                lable="Time Interval"
-                maxLength={2}
-                keyboardType="numeric"
-                value={medicineinputs.timeGap}
-                onChangeText={handleTimeGapChange}
-                onEndEditing={() => {
-                  validateField(validationProperties.timeGap);
-                }}
-                error={errors.timeGap}
-              />
 
-              <Button
-                light
-                style={{ justifyContent: "center" }}
-                onPress={() =>uploadMedicine()
-                }
-              >
-                <Text>ADD</Text>
-              </Button>
-            </Form>
-        
+          <Form style={{ marginLeft: 30, marginRight: 30 }}>
+            <FormTextInput
+              lable="Enter the Medicine Name "
+              maxLength={18}
+              value={medicineinputs.medicineName}
+              onChangeText={handleMedicineNameChange}
+              onEndEditing={() => {
+                validateField(validationProperties.medicineName);
+              }}
+              error={errors.medicineName}
+            />
+            <FormTextInput
+              lable="Starting Time in 24 hour format"
+              maxLength={2}
+              keyboardType="numeric"
+              value={medicineinputs.startingTime}
+              onChangeText={handleStartingTimeChange}
+              onEndEditing={() => {
+                validateField(validationProperties.startingTime);
+              }}
+              error={errors.startingTime}
+            />
+            <FormTextInput
+              lable="How many times per day"
+              maxLength={1}
+              keyboardType="numeric"
+              value={medicineinputs.howmanyTimes}
+              onChangeText={handleHowmanyTimesChange}
+              onEndEditing={() => {
+                validateField(validationProperties.howmanyTimes);
+              }}
+              error={errors.howmanyTimes}
+            />
+            <FormTextInput
+              lable="Time Interval"
+              maxLength={2}
+              keyboardType="numeric"
+              value={medicineinputs.timeGap}
+              onChangeText={handleTimeGapChange}
+              onEndEditing={() => {
+                validateField(validationProperties.timeGap);
+              }}
+              error={errors.timeGap}
+            />
 
-         
+            <Button
+              light
+              style={{ justifyContent: "center" }}
+              onPress={() => uploadMedicine()}
+            >
+              <Text>ADD</Text>
+            </Button>
+          </Form>
         </Content>
       </ImageBackground>
     </Container>

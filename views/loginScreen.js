@@ -2,23 +2,12 @@ import React, { useState,useContext } from "react";
 import { StyleSheet, Image, Dimensions, ImageBackground } from "react-native";
 import {
   Container,
-  Header,
-  Body,
-  Title,
   Content,
   Form,
   Button,
   Text,
   Item,
-  H2,
-  Card,
-  Label,
-  Input,
-  CardItem,
-  Left,
-  Right,
   Icon,
-  Thumbnail
 } from "native-base";
 
 import FormTextInput from "../components/formTextInputs";
@@ -30,6 +19,7 @@ import useSignUpForm from "../hooks/addLoginHooks";
 import {AuthContext} from '../contexts/context'
 import {MedicContext} from "../contexts/medicContext";
 
+// login screen which toggle between the login and registration page 
 
 const Login = props => {
   const backgroundSource = require("../images/lback.jpg");
@@ -64,6 +54,8 @@ const Login = props => {
     }
   };
 
+
+  //sign in 
   const signInAsync = async () => {
     const errorMessage = 'Authentication failed due to bad credentials '
     try {
@@ -91,6 +83,7 @@ const Login = props => {
     }
      
   };
+  // register user 
   const registerAsync = async () => {
     const regValid = validateOnSend(validationProperties);
     console.log("reg field errors", errors);

@@ -2,24 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import { StyleSheet, Image, Dimensions, ImageBackground } from "react-native";
 import {
   Container,
-  Header,
-  Body,
-  Title,
   Content,
   Form,
   Button,
   Text,
   Item,
   Toast,
-  H2,
-  Card,
-  Label,
-  Input,
-  CardItem,
-  Left,
-  Right,
-  Icon,
-  Thumbnail
+
 } from "native-base";
 
 import FormTextInput from "../components/formTextInputs";
@@ -29,12 +18,11 @@ import { fetchPUT, getUserData } from "../hooks/APIHooks";
 import useSignUpForm from "../hooks/addLoginHooks";
 import useUploadForm from "../hooks/profilePicUploadHook";
 import * as ImagePicker from 'expo-image-picker';
-import { AuthContext } from "../contexts/context";
-import { MedicContext } from "../contexts/medicContext";
-import MySpinner from "./spinnerLo";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
+
+
 
 const EditProFile = ({user}) => {
     const ss = user.avatar;
@@ -62,11 +50,6 @@ const EditProFile = ({user}) => {
 
   const {
     handleUpload,
-    imageinputs,
-    imageErrors,
-    loading,
-    setImageErrors,
-    setImageInputs,
   } = useUploadForm();
 
   const validationProperties = {

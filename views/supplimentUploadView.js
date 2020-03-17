@@ -7,24 +7,15 @@ import {
 
 import {
   Container,
-  Header,
   Body,
-  Title,
   Content,
   Form,
   Button,
   Text,
   Item,
-  H2,
   Card,
-  Label,
-  Input,
-  CardItem,
   Left,
-  Right,
   Icon,
-  Thumbnail,
-  View
 } from "native-base";
 //import FormTextInput from "../components/FormTextInput";
 import useSuppMedicineForm from "../hooks/addSupplimentHook";
@@ -33,6 +24,8 @@ import Listt from "../components/list";
 import Algo from "../components/algo";
 import Home from "./Home";
 
+
+// a screen whiche shows has the upload for suppliments 
 const SupplimentUpload = ({nav ,file}) => {
    
     
